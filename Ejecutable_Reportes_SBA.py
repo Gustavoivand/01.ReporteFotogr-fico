@@ -136,15 +136,20 @@ class MyGUI:
         self.Traduccion_frame=tk.Frame(self.root)
         self.Traduccion_frame.pack(side='bottom',pady=10)
         self.Btn_Traduccion=tk.Button(self.Traduccion_frame,text="Traducir",font=('Arial',12),command=self.traducir)
-        self.Btn_Traduccion.pack(side="top",padx=5)
+        self.Btn_Traduccion.pack(side="left",padx=5)
         self.lbl_Traduccion=tk.Label(self.Traduccion_frame,text="-Sin Ejecutar-",font=('Arial',8))
-        self.lbl_Traduccion.pack(side="top",padx=35)
+        self.lbl_Traduccion.pack(side="left",padx=35)
+        self.Btn_Traduccion_old=tk.Button(self.Traduccion_frame,text="Traducir Antiguo",font=('Arial',12),command=self.traducir_old)
+        self.Btn_Traduccion_old.pack(side="left",padx=5)
+        self.lbl_Traduccion_old=tk.Label(self.Traduccion_frame,text="-Sin Ejecutar-",font=('Arial',8))
+        self.lbl_Traduccion_old.pack(side="left",padx=35)
+
 
         self.PorTraducir_frame=tk.Frame(self.root)
         self.PorTraducir_frame.pack(side='bottom',pady=10)
-        self.label8=tk.Label(self.PorTraducir_frame,text="DOCUMENTO PARA TRADUCCIÓN",font=('Arial',12))
-        self.label8.pack(side="top",padx=10,pady=10)
-        self.label9=tk.Label(self.PorTraducir_frame,text="Excel Base:",font=('Arial',12))
+        self.label8=tk.Label(self.PorTraducir_frame,text="--------DOCUMENTO PARA TRADUCCIÓN--------",font=('Arial',12))
+        self.label8.pack(side="top",padx=100,pady=10)
+        self.label9=tk.Label(self.PorTraducir_frame,text="Reporte Modificado:",font=('Arial',12))
         self.label9.pack(side="left",padx=10)
         self.PorTraducir_path=tk.Entry(self.PorTraducir_frame,state='disabled',font=('Arial',12))
         self.PorTraducir_path.pack(side="left",padx=40)
@@ -1100,4 +1105,187 @@ class MyGUI:
         #CERRAR EL DOCUMENTO DE EXCEL
         workbook.close()
         self.lbl_Traduccion.config(text="-Listo-")
+    def traducir_old(self):
+        pass
+        self.lbl_Traduccion_OLD.config(text="-En ejecución-")
+
+                #%%%%%%%%%%%%%%%%%TRADUCCIONES%%%%%%%%%%%%%%%%%%%%%%%%%%
+        directorio=self.FotosReporte_path.get()
+        file_traducir=self.PorTraducir_path.get()
+        user_mail=self.lbl_correo.cget("text")
+        workbook = openpyxl.load_workbook(file_traducir)
+        #-------HOJA 1
+        ws1=workbook['1']
+        columna=column_index_from_string('F')
+        fila_ini=32
+        fila_fin=51
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        #-------HOJA 1_2
+        ws1=workbook['1_2']
+        columna=column_index_from_string('G')
+        fila_ini=17
+        fila_fin=20
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        #-------HOJA ANNEX J REP.
+        ws1=workbook['ANNEX J REP.']
+        columna=column_index_from_string('H')
+        fila_ini=15
+        fila_fin=53
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        #-------HOJA ANNEX J REP.2
+        ws1=workbook['ANNEX J REP.2']
+        columna=column_index_from_string('L')
+        fila_ini=15
+        fila_fin=43
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        #-------HOJA SITE_DUE
+        ws1=workbook['SITE DUE']
+        columna=column_index_from_string('I')
+        fila_ini=11
+        fila_fin=37
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        #-------HOJA ISSUES
+
+        ws1=workbook['ISSUES']
+        columna=column_index_from_string('F')
+        fila_ini=11
+        fila_fin=50
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        ws1=workbook['ISSUES']
+        columna=column_index_from_string('E')
+        fila_ini=11
+        fila_fin=50
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        ws1=workbook['ISSUES']
+        columna=column_index_from_string('K')
+        fila_ini=11
+        fila_fin=50
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                textoInicial=cell.value
+                if textoInicial!="":
+                    #print(textoInicial)
+                    #time.sleep(1)
+                    try:
+                        Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                        if Texto_Traducido!="None":
+                            cell.value=Texto_Traducido
+                    except:
+                        pass
+        #-------HOJA 'PHOTOS_2_3'
+        ws1=workbook['PHOTOS_2_3']
+        columna=column_index_from_string('A')
+        fila_ini=8
+        fila_fin=100
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                if cell.row%2==0 :
+                    textoInicial=cell.value
+                    if textoInicial != "":
+                        try:
+                            Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                            if Texto_Traducido!="None":
+                                cell.value=Texto_Traducido
+                        except:
+                            pass
+        ws1=workbook['PHOTOS_2_3']
+        columna=column_index_from_string('F')
+        fila_ini=8
+        fila_fin=100
+        for row in ws1.iter_rows(min_row=fila_ini, max_col=columna, max_row=fila_fin,min_col=columna):
+            for cell in row:
+                if cell.row%2==0 :
+                    textoInicial=cell.value
+                    if textoInicial != "":
+                        try:
+                            Texto_Traducido=translate_phrase(textoInicial,correo_usuario=user_mail)
+                            if Texto_Traducido!="None":
+                                cell.value=Texto_Traducido
+                        except:
+                            pass
+
+        #GUARDARLO EN LA CARPETA DE DESTINO
+        workbook.save(directorio+'/Reporte Fotográfico Traducido.xlsx')
+        #CERRAR EL DOCUMENTO DE EXCEL
+        workbook.close()
+        self.lbl_Traduccion_old.config(text="-Listo-")
+        #-------HOJA ISSUES
+                
 MyGUI()
