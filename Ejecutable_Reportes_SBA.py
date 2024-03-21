@@ -8,7 +8,7 @@ from tkinter import messagebox
 #py -m pip install tk        
 #py -m pip install translate
 #Esta linea inicia la rutina y todos los comandos necesarios para la ejecución del código
-    
+#pyinstaller --onefile -w Ejecutable_Reportes_SBA.py
 from PIL import JpegImagePlugin
 from decimal import Decimal
 import openpyxl
@@ -58,7 +58,7 @@ class MyGUI:
 
         #INSERTAR CORREO
         self.username_frame=tk.Frame(self.root)
-        self.username_frame.pack(pady=10)
+        self.username_frame.pack(side='top',pady=10)
         self.label0a=tk.Label(self.username_frame,text="Correo:",font=('Arial',12))
         self.label0a.pack(side="left",padx=40)
         self.entry1=tk.Entry(self.username_frame,text="",font=('Arial',12))
@@ -67,13 +67,13 @@ class MyGUI:
         self.Btn_correo.pack(side="left",padx=5)
 
         self.sendcorreo_frame=tk.Frame(self.root)
-        self.sendcorreo_frame.pack(pady=10)
+        self.sendcorreo_frame.pack(side='top',pady=10)
         self.lbl_correo=tk.Label(self.sendcorreo_frame,text="-USUARIO-",font=('Arial',8))
         self.lbl_correo.pack(side="left",padx=35)
 
         #BUSCAR DOCUMENTO BASE DE REPORTE
         self.BaseDoc_frame=tk.Frame(self.root)
-        self.BaseDoc_frame.pack(pady=10)
+        self.BaseDoc_frame.pack(side='top',pady=10)
         self.label0=tk.Label(self.BaseDoc_frame,text="DOCUMENTO BASE",font=('Arial',12))
         self.label0.pack(side="top",padx=10,pady=10)
         self.label1=tk.Label(self.BaseDoc_frame,text="Excel Base:",font=('Arial',12))
@@ -84,7 +84,7 @@ class MyGUI:
         self.Btn_BaseDoc.pack(side="left",padx=5)
         #BUSCAR DOCUMENTO DE BASE DE DATOS
         self.DB_frame=tk.Frame(self.root)
-        self.DB_frame.pack(pady=10)
+        self.DB_frame.pack(side='top',pady=10)
         self.label2=tk.Label(self.DB_frame,text="BASE DE DATOS (opcional)",font=('Arial',12))
         self.label2.pack(side="top",padx=10,pady=10)
         self.label3=tk.Label(self.DB_frame,text="DB:",font=('Arial',12))
@@ -103,7 +103,7 @@ class MyGUI:
         self.Btn_codsite.pack(side="left",padx=5)
 
         self.lblsite_frame=tk.Frame(self.root)
-        self.lblsite_frame.pack(pady=10)
+        self.lblsite_frame.pack(side='top',pady=10)
         self.lbl_codsite=tk.Label(self.lblsite_frame,text="-COD SITE-",font=('Arial',8))
         self.lbl_codsite.pack(side="left",padx=35)
 
@@ -111,7 +111,7 @@ class MyGUI:
         #BUSCAR CARPETA DE REPORTE
         #self.button3 =tk.Button(self.root, text="Buscar carpeta con las imágenes ordenadas", font=('Arial',12),command=self.buscar_carpeta)
         self.FotosReporte_frame=tk.Frame(self.root)
-        self.FotosReporte_frame.pack(pady=10)
+        self.FotosReporte_frame.pack(side='left',pady=10)
         self.label5=tk.Label(self.FotosReporte_frame,text="CARPETA CON FOTOS DEL REPORTE",font=('Arial',12))
         self.label5.pack(side="top",padx=10,pady=10)
         self.label6=tk.Label(self.FotosReporte_frame,text="Carpeta:",font=('Arial',12))
@@ -124,7 +124,7 @@ class MyGUI:
 
         #EJECUTAR REPORTE
         self.EjecutarReporte_frame=tk.Frame(self.root)
-        self.EjecutarReporte_frame.pack(pady=10)
+        self.EjecutarReporte_frame.pack(side='left',pady=10)
         self.label7=tk.Label(self.EjecutarReporte_frame,text="EJECUCIÓN DE REPORTE",font=('Arial',12))
         self.label7.pack(side="top",padx=10,pady=10)
         self.Btn_Ejecucion=tk.Button(self.EjecutarReporte_frame,text="Ejecutar",font=('Arial',12),command=self.ejecutar)
@@ -133,8 +133,15 @@ class MyGUI:
         self.lbl_Ejecucion.pack(side="top",padx=35)
 
         #BUSCAR DOCUMENTO DE SALIDA 1_ESPAÑOL
+        self.Traduccion_frame=tk.Frame(self.root)
+        self.Traduccion_frame.pack(side='bottom',pady=10)
+        self.Btn_Traduccion=tk.Button(self.Traduccion_frame,text="Traducir",font=('Arial',12),command=self.traducir)
+        self.Btn_Traduccion.pack(side="top",padx=5)
+        self.lbl_Traduccion=tk.Label(self.Traduccion_frame,text="-Sin Ejecutar-",font=('Arial',8))
+        self.lbl_Traduccion.pack(side="top",padx=35)
+
         self.PorTraducir_frame=tk.Frame(self.root)
-        self.PorTraducir_frame.pack(pady=10)
+        self.PorTraducir_frame.pack(side='bottom',pady=10)
         self.label8=tk.Label(self.PorTraducir_frame,text="DOCUMENTO PARA TRADUCCIÓN",font=('Arial',12))
         self.label8.pack(side="top",padx=10,pady=10)
         self.label9=tk.Label(self.PorTraducir_frame,text="Excel Base:",font=('Arial',12))
@@ -144,12 +151,7 @@ class MyGUI:
         self.Btn_PorTraducir=tk.Button(self.PorTraducir_frame,text="...",font=('Arial',12),command=self.buscar_doc_Reportelisto)
         self.Btn_PorTraducir.pack(side="left",padx=5)
 
-        self.Traduccion_frame=tk.Frame(self.root)
-        self.Traduccion_frame.pack(pady=10)
-        self.Btn_Traduccion=tk.Button(self.Traduccion_frame,text="Traducir",font=('Arial',12),command=self.traducir)
-        self.Btn_Traduccion.pack(side="top",padx=5)
-        self.lbl_Traduccion=tk.Label(self.Traduccion_frame,text="-Sin Ejecutar-",font=('Arial',8))
-        self.lbl_Traduccion.pack(side="top",padx=35)
+
 
         self.root.mainloop()
     def guardar_correo(self):
